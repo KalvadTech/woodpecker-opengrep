@@ -2,6 +2,8 @@
 
 set -e
 
+git config --global --add safe.directory /woodpecker
+
 RULES="${PLUGIN_RULES:-auto}"
 TARGET="${PLUGIN_TARGET:-.}"
 CONFIG="${PLUGIN_CONFIG:-}"
@@ -15,10 +17,6 @@ if [ -n "$CONFIG" ]; then
     OPENGREP_CMD="${OPENGREP_CMD} --config ${CONFIG}"
 fi
 
-if [ -n "$SARIF_OUTPUT" ]; then
-    OPENGREP_CMD="${OPENGREP_CMD} --sarif-output ${SARIF_OUTPUT}"
-fi
-
 if [ -n "$EXCLUDE" ]; then
     OPENGREP_CMD="${OPENGREP_CMD} --exclude ${EXCLUDE}"
 fi
@@ -27,5 +25,11 @@ if [ "$ERROR" = "true" ]; then
     OPENGREP_CMD="${OPENGREP_CMD} --error"
 fi
 
-echo "Running: ${OPENGREP_CMD}"
-eval ${OPENGREP_CMD}
+if [ -n "$SARIF_OUTPUT" ]; then
+    OPENGREP_CMD="${OPENGREP_CMD} --sarif"
+    echo "Running: ${OPENGREP_CMD} > ${SARIF_OUTPUT}"
+    eval "${OPENGREP_CMD}" > "${SARIF_OUTPUT}"
+else
+    echo "Running: ${OPENGREP_CMD}"
+    eval ${OPENGREP_CMD}
+fi

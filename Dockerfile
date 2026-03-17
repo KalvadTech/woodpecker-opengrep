@@ -1,11 +1,14 @@
-FROM debian:stable-slim
+FROM alpine:3.19
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl ca-certificates git
 
 ARG OPENGREP_VERSION=v1.16.4
 
-RUN curl -fsSL -o /bin/opengrep https://github.com/opengrep/opengrep/releases/download/${OPENGREP_VERSION}/opengrep_manylinux_x86 && \
-    chmod +x /bin/opengrep
+RUN curl -fsSL -o /opengrep.tar.gz https://github.com/opengrep/opengrep/releases/download/${OPENGREP_VERSION}/opengrep-core_linux_x86.tar.gz && \
+    tar -xzf /opengrep.tar.gz -C /bin opengrep-core && \
+    mv /bin/opengrep-core /bin/opengrep && \
+    chmod +x /bin/opengrep && \
+    rm /opengrep.tar.gz
 
 COPY entrypoint.sh /bin/
 
