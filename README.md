@@ -1,6 +1,6 @@
 # Woodpecker Opengrep Plugin
 
-A Woodpecker CI plugin for running [Opengrep](https://github.com/opengrep/opengrep) static code analysis scans.
+A [Woodpecker CI](https://woodpecker-ci.org/) plugin for running [Opengrep](https://github.com/opengrep/opengrep) static code analysis scans.
 
 Opengrep is a community fork of Semgrep that keeps static analysis open and accessible. It provides semantic code search, security vulnerability detection, and supports 30+ languages.
 
