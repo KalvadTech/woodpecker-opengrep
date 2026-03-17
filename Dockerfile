@@ -1,6 +1,6 @@
-FROM alpine:3.19 AS builder
+FROM alpine:3.23
 
-RUN apk add --no-cache curl
+RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates git
 
 ARG OPENGREP_VERSION=v1.16.4
 
@@ -10,12 +10,6 @@ RUN curl -fsSL -o /opengrep.tar.gz \
     mv /bin/opengrep-core /bin/opengrep && \
     chmod +x /bin/opengrep && \
     rm /opengrep.tar.gz
-
-FROM alpine:3.19
-
-RUN apk add --no-cache ca-certificates git
-
-COPY --from=builder /bin/opengrep /bin/opengrep
 
 COPY entrypoint.sh /bin/
 
