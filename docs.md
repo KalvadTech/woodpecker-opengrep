@@ -2,8 +2,11 @@
 name: Opengrep
 author: Kalvad
 description: Static code analysis using Opengrep (Semgrep fork)
-containerImage: ghcr.io/kalvadtech/woodpecker-opengrep
 tags: [security, static-analysis, opengrep, semgrep]
+icon: https://avatars.githubusercontent.com/u/194138787?v=4
+repo: KalvadTech/woodpecker-opengrep
+containerImage: ghcr.io/kalvadtech/woodpecker-opengrep
+containerImageUrl: https://github.com/KalvadTech/woodpecker-opengrep/pkgs/container/woodpecker-opengrep
 url: https://github.com/KalvadTech/woodpecker-opengrep
 ---
 
