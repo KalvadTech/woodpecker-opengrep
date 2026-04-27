@@ -24,6 +24,7 @@ steps:
 | `sarif_output` | Output file for SARIF results. | - |
 | `error` | Exit with code 1 if findings are detected. Useful for failing CI builds on security issues. | `false` |
 | `exclude` | Patterns to exclude from scanning. | - |
+| `project_root` | Forces project root (enables --experimental flag) | - |
 
 ## Examples
 

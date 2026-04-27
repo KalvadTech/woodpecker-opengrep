@@ -10,6 +10,7 @@ CONFIG="${PLUGIN_CONFIG:-}"
 SARIF_OUTPUT="${PLUGIN_SARIF_OUTPUT:-}"
 ERROR="${PLUGIN_ERROR:-false}"
 EXCLUDE="${PLUGIN_EXCLUDE:-}"
+PROJECT_ROOT="${PLUGIN_PROJECT_ROOT:-}"
 
 OPENGREP_CMD="opengrep scan -f ${RULES} ${TARGET}"
 
@@ -23,6 +24,10 @@ fi
 
 if [ "$ERROR" = "true" ]; then
     OPENGREP_CMD="${OPENGREP_CMD} --error"
+fi
+
+if [ -n "$PROJECT_ROOT" ]; then
+    OPENGREP_CMD="${OPENGREP_CMD} --experimental --project-root=${PROJECT_ROOT}"
 fi
 
 if [ -n "$SARIF_OUTPUT" ]; then
