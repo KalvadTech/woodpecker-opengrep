@@ -2,7 +2,7 @@ FROM alpine:3.23
 
 RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates git
 
-ARG OPENGREP_VERSION=v1.25.0
+ARG OPENGREP_VERSION=v1.26.0
 
 RUN curl -fsSL -o /opengrep.tar.gz \
     https://github.com/opengrep/opengrep/releases/download/${OPENGREP_VERSION}/opengrep-core_linux_x86.tar.gz && \
