@@ -32,7 +32,7 @@ jobs:
 
       - name: Run basic test
         run: |
-          docker run --rm test:latest opengrep --version
+          docker run --rm --entrypoint opengrep test:latest --version
 
   push:
     runs-on: ubuntu-latest
